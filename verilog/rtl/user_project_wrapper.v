@@ -70,40 +70,66 @@ module user_project_wrapper #(
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-user_proj_example mprj (
+// IO 0-4 are special, configured by MGMT
+// Let's not use it
+
+assign io_out[4:0] = 5'b00000;
+assign io_oeb[4:0] = 5'b11111;
+
+// SPI
+
+assign io_oeb[8:5] = 3'b0100;
+assign io_out[7] = 1'b0;
+
+// UART0
+
+assign io_oeb[10:9] = 2'b01;
+assign io_out[9] = 1'b0;
+
+// UART1
+
+assign io_oeb[12:11] = 2'b01;
+assign io_out[11] = 1'b0;
+
+// Blinky
+
+assign io_oeb[13] = 1'b0;
+
+// GPIO - use 24 bits
+
+wire [31:0] gpio0_in;
+wire [31:0] gpio0_out;
+wire [31:0] gpio0_oe;
+
+assign io_oeb[37:14] = ~gpio0_oe[23:0];
+assign io_out[37:14] =  gpio0_out[23:0];
+assign gpio0_in = {8'b00000000, gpio0_in[23:0]};
+
+leosoc leosoc_i (
 `ifdef USE_POWER_PINS
 	.vdd(vdd),	// User area 1 1.8V power
 	.vss(vss),	// User area 1 digital ground
 `endif
+    .clk        (wb_clk_i),
+    .reset      (wb_rst_i),
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
+    .uart0_rx   (io_in[9]),
+    .uart0_tx   (io_out[10]),
+    
+    .uart1_rx   (io_in[11]),
+    .uart1_tx   (io_out[12]),
+    
+    .gpio0_in   (gpio0_in),
+    .gpio0_out  (gpio0_out),
+    .gpio0_oe   (gpio0_oe),
 
-    // MGMT SoC Wishbone Slave
-
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in ({io_in[37:30],io_in[7:0]}),
-    .io_out({io_out[37:30],io_out[7:0]}),
-    .io_oeb({io_oeb[37:30],io_oeb[7:0]}),
-
-    // IRQ
-    .irq(user_irq)
+    .blink      (io_out[13]),
+    
+    // SPI signals
+    .sck        (io_out[5]),
+    .sdo        (io_out[6]),
+    .sdi        (io_in[7]),
+    .cs         (io_out[8])
 );
 
 endmodule	// user_project_wrapper
