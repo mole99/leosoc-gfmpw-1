@@ -7,3 +7,5 @@
 *.vcd
 *.gtkw
 *.nl.v
+__pycache__/
+sim_build/
