@@ -1,0 +1,62 @@
+{
+	"PDK": "gf180mcuD",
+	"STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
+	"DESIGN_NAME": "leosoc",
+	"VERILOG_FILES": [
+		"dir::../../verilog/rtl/leorv32/rtl/leorv32_pkg.sv",
+		"dir::../../verilog/rtl/leorv32/rtl/leorv32.sv",
+		"dir::../../verilog/rtl/soc/rtl/leosoc.sv",
+		"dir::../../verilog/rtl/soc/rtl/core_wrapper.sv",
+		"dir::../../verilog/rtl/cache/rtl/direct_mapped_cache.sv",
+		"dir::../../verilog/rtl/sram/rtl/sram_gf180.sv",
+		"dir::../../verilog/rtl/arbiter/rtl/arbiter.sv",
+		"dir::../../verilog/rtl/uart/rtl/uart_rx.sv",
+		"dir::../../verilog/rtl/uart/rtl/uart_tx.sv",
+		"dir::../../verilog/rtl/uart/rtl/peripheral_uart.sv",
+		"dir::../../verilog/rtl/gpio/rtl/peripheral_gpio.sv",
+		"dir::../../verilog/rtl/spi_flash/rtl/spi_flash.sv",
+		"dir::../../verilog/rtl/util/rtl/synchronizer.sv"
+	],
+	"DESIGN_IS_CORE": 1,
+	"CLOCK_PORT": "clk",
+	"CLOCK_PERIOD": "24.0",
+	"FP_SIZING": "absolute",
+	"DIE_AREA": "0 0 2000 2000",
+	"#FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+	"PL_BASIC_PLACEMENT": 0,
+	"PL_TARGET_DENSITY": 0.30,
+	"ROUTING_CORES": 6,
+	"MAX_FANOUT_CONSTRAINT": 4,
+	"RT_MAX_LAYER": "Metal4",
+	"VDD_NETS": [
+		"vdd"
+	],
+	"GND_NETS": [
+		"vss"
+	],
+    "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
+	"VERILOG_FILES_BLACKBOX": [
+		"dir::../../verilog/gl/gf180_ram_512x8_wrapper.v"
+	],
+	"EXTRA_LEFS": [
+	    "dir::../../lef/gf180_ram_512x8_wrapper.lef"
+	],
+	"EXTRA_GDS_FILES": [
+    	"dir::../../gds/gf180_ram_512x8_wrapper.gds"
+	],
+	"EXTRA_LIBS": [
+	    "dir::../../lib/gf180_ram_512x8_wrapper.lib"
+    ],
+	"EXTRA_SPEFS": [
+		"gf180_ram_512x8_wrapper",
+		"dir::../../spef/multicorner/gf180_ram_512x8_wrapper.min.spef",
+		"dir::../../spef/multicorner/gf180_ram_512x8_wrapper.nom.spef",
+		"dir::../../spef/multicorner/gf180_ram_512x8_wrapper.max.spef"
+	],
+	"FP_PDN_MACRO_HOOKS": [
+	    "wram.*sram512x8_i0 vdd vss vdd vss",
+	    "wram.*sram512x8_i1 vdd vss vdd vss",
+	    "wram.*sram512x8_i2 vdd vss vdd vss",
+	    "wram.*sram512x8_i3 vdd vss vdd vss"
+	]
+}

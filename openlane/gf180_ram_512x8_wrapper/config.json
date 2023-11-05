@@ -1,0 +1,53 @@
+{
+	"PDK": "gf180mcuD",
+	"STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
+	"DESIGN_NAME": "gf180_ram_512x8_wrapper",
+	"VERILOG_FILES": [
+		"dir::../../verilog/rtl/gf180_ram_512x8_wrapper.v"
+	],
+	"DESIGN_IS_CORE": 1,
+	"CLOCK_PORT": "CLK",
+	"CLOCK_PERIOD": "25",
+	"FP_SIZING": "absolute",
+	"DIE_AREA": "0 0 444.86 495.88",
+	"FP_DEF_TEMPLATE": "dir::io.def",
+	"FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+	"MACRO_PLACEMENT_CFG": "dir::macro_placement.cfg",
+	"VERILOG_FILES_BLACKBOX": [
+		"ref::$PDKPATH/libs.ref/gf180mcu_fd_ip_sram/verilog/gf180mcu_fd_ip_sram__sram512x8m8wm1.v"
+	],
+	"EXTRA_LEFS": [
+    	"ref::$PDKPATH/libs.ref/gf180mcu_fd_ip_sram/lef/gf180mcu_fd_ip_sram__sram512x8m8wm1.lef"
+	],
+	"EXTRA_GDS_FILES": [
+    	"ref::$PDKPATH/libs.ref/gf180mcu_fd_ip_sram/gds/gf180mcu_fd_ip_sram__sram512x8m8wm1.gds"
+	],
+	"EXTRA_LIBS": [
+    	"ref::$PDKPATH/libs.ref/gf180mcu_fd_ip_sram/liberty/gf180mcu_fd_ip_sram__sram512x8m8wm1__tt_025C_5v00.lib"
+	],
+	"RT_MIN_LAYER": "Metal2",
+	"RT_MAX_LAYER": "Metal5",
+
+	"FP_PDN_CFG": "dir::pdn.tcl",
+	"FP_PDN_CORE_RING": 0,
+	"FP_PDN_CHECK_NODES": 0,
+	"RUN_IRDROP_REPORT": 1,
+
+    "PL_RESIZER_DESIGN_OPTIMIZATIONS": 0,
+    "PL_RESIZER_TIMING_OPTIMIZATIONS": 0,
+    "GLB_RESIZER_TIMING_OPTIMIZATIONS": 0,
+    "DIODE_INSERTION_STRATEGY": 0,
+    "RUN_FILL_INSERTION": 0,
+    "RUN_TAP_DECAP_INSERTION": 0,
+    "RUN_CTS": 0,
+    "SYNTH_BUFFERING": 0,
+
+    "QUIT_ON_TIMING_VIOLATIONS": 0,
+    "RUN_SPEF_EXTRACTION": 1,
+    "QUIT_ON_LVS_ERROR": 0,
+    "QUIT_ON_MAGIC_DRC": 0,
+    "MAGIC_EXT_USE_GDS": 1,
+    
+    "RUN_LINTER": 0,
+    "RUN_LVS": 0
+}
