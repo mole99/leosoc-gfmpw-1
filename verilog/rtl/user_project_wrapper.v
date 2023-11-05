@@ -66,6 +66,15 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 
+// Connect dummy signals
+
+assign wbs_ack_o = 1'b1;
+assign wbs_dat_o = 32'b0;
+
+assign la_data_out = 64'b0;
+
+assign user_irq = 3'b0;
+
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
@@ -103,7 +112,7 @@ wire [31:0] gpio0_oe;
 
 assign io_oeb[37:14] = ~gpio0_oe[23:0];
 assign io_out[37:14] =  gpio0_out[23:0];
-assign gpio0_in = {8'b00000000, gpio0_in[23:0]};
+assign gpio0_in = {8'b00000000, io_in[37:14]};
 
 leosoc leosoc_i (
 `ifdef USE_POWER_PINS

@@ -95,7 +95,7 @@ jobs:
 
       - name: Harden using Openlane
         run: |
-          make user_proj_example
+          make gf180_ram_512x8_wrapper
           make user_project_wrapper
 
       - name: run precheck
