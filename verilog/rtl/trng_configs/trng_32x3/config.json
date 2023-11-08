@@ -1,0 +1,29 @@
+{
+	"PDK": "gf180mcuD",
+	"STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
+	"DESIGN_NAME": "trng_32x3",
+	"VERILOG_FILES": [
+		"dir::../../verilog/rtl/trng_configs/trng_32x3.sv",
+		"dir::../../verilog/rtl/trng.sv",
+        "dir::../../verilog/rtl/balanced_xor_tree.v",
+        "dir::../../verilog/rtl/ring_oscillator.v"
+	],
+	"DESIGN_IS_CORE": 0,
+	"CLOCK_PORT": "clk",
+	"CLOCK_PERIOD": "24.0",
+	"FP_SIZING": "absolute",
+	"DIE_AREA": "0 0 130 130",
+	"FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+	"PL_BASIC_PLACEMENT": 0,
+	"PL_TARGET_DENSITY": 0.45,
+	"ROUTING_CORES": 6,
+	"MAX_FANOUT_CONSTRAINT": 4,
+	"RT_MAX_LAYER": "Metal4",
+	"VDD_NETS": [
+		"vdd"
+	],
+	"GND_NETS": [
+		"vss"
+	],
+	"SYNTH_READ_BLACKBOX_LIB": 1
+}
