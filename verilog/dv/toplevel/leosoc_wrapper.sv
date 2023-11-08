@@ -23,7 +23,7 @@ module leosoc_wrapper (
 );
 
     initial begin
-        $dumpfile("dump.vcd");
+        $dumpfile("dump.fst");
         $dumpvars(0, leosoc_wrapper);
     end
 

@@ -7,9 +7,9 @@
 module core_wrapper #(
     parameter int NUM_CORES = 1,
     parameter int RESET_ADDR = 32'h00000000,
-    parameter int ADDR_WIDTH = 16,
+    parameter int ADDR_WIDTH = 32,
     parameter int INSTR_CACHE = 1,
-    parameter int INSTR_CACHE_SIZE = 16
+    parameter int INSTR_CACHE_SIZE = 32
 ) (
     input  logic clk,
     input  logic reset,

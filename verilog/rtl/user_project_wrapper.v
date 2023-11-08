@@ -79,15 +79,14 @@ assign user_irq = 3'b0;
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-// IO 0-4 are special, configured by MGMT
-// Let's not use it
+// Not used
 
 assign io_out[4:0] = 5'b00000;
 assign io_oeb[4:0] = 5'b11111;
 
 // SPI
 
-assign io_oeb[8:5] = 3'b0100;
+assign io_oeb[8:5] = 4'b0100;
 assign io_out[7] = 1'b0;
 
 // UART0

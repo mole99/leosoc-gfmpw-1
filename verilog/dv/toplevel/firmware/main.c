@@ -24,6 +24,13 @@ typedef struct
 
 static volatile gpio_t *const gpio0 = (volatile gpio_t *const) 0x05000000;
 
+typedef struct
+{
+	volatile uint32_t enable;
+	volatile uint32_t output;
+} trng_t;
+
+static volatile trng_t *const trng0 = (volatile trng_t *const) 0x06000000;
 
 void tx_uart(volatile uart_t* const uart, char data)
 {
@@ -105,7 +112,14 @@ void main()
         gpio0->value = 0x12345678;
         uart0->baudrate = F_CPU / BAUDRATE_UART0;
         write_int(uart0, gpio0->value);
-        write(uart0, "Core 0\n");//write(uart0, "Hello World on LeoRV32 :)\n");
+        tx_uart(uart0, '\n');
+        write_int(uart0, trng0->output);
+        tx_uart(uart0, '\n');
+        trng0->enable = 0xFFFFFFFF;
+        write_int(uart0, trng0->output);
+        tx_uart(uart0, '\n');
+        write(uart0, "Core 0\n");
+        //write(uart0, "Hello World on LeoRV32 :)\n");
         sync_flag = 1;
     }
     

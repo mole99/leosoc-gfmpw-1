@@ -5,7 +5,7 @@
 `timescale 1ns / 1ps
 
 module direct_mapped_cache #(
-    parameter CACHE_ENTRIES = 16,
+    parameter CACHE_ENTRIES = 32,
     parameter ADDR_WIDTH = 32
 ) (
     input  logic clk_i,
@@ -31,7 +31,7 @@ module direct_mapped_cache #(
     } cache_set_t;
     
     // Cache memory
-    cache_set_t cache [CACHE_ENTRIES];
+    cache_set_t cache [0:CACHE_ENTRIES-1];
     
     // Extract attributes from address
     logic [1:0]                                     cache_offset;

@@ -43,7 +43,7 @@ module leosoc #(
 
     localparam NUM_WMASKS = 4;
     localparam DATA_WIDTH = 32;
-    localparam WRAM_ADDR_WIDTH = 9;
+    localparam WRAM_ADDR_WIDTH = 10;
 
     localparam WRAM_MASK        = 8'h00;
     localparam SPI_FLASH_MASK   = 8'h02;
@@ -52,6 +52,7 @@ module leosoc #(
     localparam UART0_BASE_ADDRESS = 32'h03000000;
     localparam UART1_BASE_ADDRESS = 32'h04000000;
     localparam GPIO0_BASE_ADDRESS = 32'h05000000;
+    localparam TRNG0_BASE_ADDRESS = 32'h06000000;
 
     // ----------------------------------
     //           LeoRV32 Core
@@ -166,6 +167,9 @@ module leosoc #(
         // GPIO0
         end else if (gpio0_select_del) begin
             mem_rdata = gpio0_rdata;
+        // TRNG0
+        end else if (trng0_select_del) begin
+            mem_rdata = trng0_rdata;
         // WRAM
         end else begin
             mem_rdata = mem_rdata_memory;
@@ -181,67 +185,6 @@ module leosoc #(
             blink <= mem_wdata[0];
         end
     end
-
-    // Uart
-
-    /*logic mem_rstrb_delayed;
-    always_ff @(posedge clk, posedge reset) begin
-        if (reset) begin
-            mem_rstrb_delayed <= 1'b0;
-        end else begin
-            mem_rstrb_delayed <= mem_rstrb;
-        end
-    end
-
-    logic rx_flag;
-    always_ff @(posedge clk, posedge reset) begin
-        if (reset) begin
-            rx_flag  <= 1'b0;
-        end else begin
-            if (!rx_done_delayed && rx_done) rx_flag <= 1'b1;
-            else if (soc_uart_sel && mem_rstrb) rx_flag <= 1'b0;
-        end
-    end
-    
-    logic [DATA_WIDTH-1: 0] uart_reg;
-    assign uart_reg = {rx_flag, tx_busy, {22{1'b0}}, rx_received};
-
-    logic [7:0] rx_received;
-    logic rx_done;
-    logic rx_done_delayed;
-
-    always_ff @(posedge clk) begin
-        if (reset) begin
-            rx_done_delayed <= 1'b0;
-        end else begin
-            rx_done_delayed <= rx_done;
-        end
-    end
-
-    my_uart_rx #(
-        .FREQUENCY(FREQUENCY),
-        .BAUDRATE (BAUDRATE)
-    ) my_uart_rx (
-        .clk    (clk),
-        .rst    (reset),
-        .rx     (uart_rx_sync),
-        .data   (rx_received),
-        .valid  (rx_done)
-    );
-
-    logic tx_busy;
-
-    my_uart_tx #(
-        .FREQUENCY(FREQUENCY),
-        .BAUDRATE (BAUDRATE)
-    ) my_uart_tx (
-        .clk    (clk),
-        .rst    (reset),
-        .data   (mem_wdata[7:0]),
-        .start  (soc_uart_sel && mem_wstrb),
-        .tx     (uart_tx),
-        .busy   (tx_busy)
-    );*/
 
     // UART0 Peripheral
     
@@ -345,6 +288,40 @@ module leosoc #(
         .gpio_in    (gpio0_in),
         .gpio_out   (gpio0_out),
         .gpio_oe    (gpio0_oe)
+    );
+    
+    // TRNG0 Peripheral
+    
+    logic [31:0] trng0_rdata;
+    logic trng0_done; // Not used
+    logic trng0_select;
+    
+    logic trng0_select_del;
+    always_ff @(posedge clk, posedge reset) begin
+        if (reset) begin
+            trng0_select_del <= 1'b0;
+        end else begin
+            trng0_select_del <= trng0_select;
+        end
+    end
+    
+    peripheral_trng #(
+        .ADDRESS_BASE   (TRNG0_BASE_ADDRESS)
+    ) peripheral_trng_i (
+    `ifdef USE_POWER_PINS
+        .vdd        (vdd),
+        .vss        (vss),
+    `endif
+        .clk_i      (clk),
+        .rst_ni     (!reset),
+        .mem_addr   (mem_addr),
+        .mem_wdata  (mem_wdata),
+        .mem_wmask  (mem_wmask),
+        .mem_wstrb  (mem_wstrb),
+        .mem_rdata  (trng0_rdata),
+        .mem_rstrb  (mem_rstrb),
+        .mem_done   (trng0_done),
+        .select     (trng0_select)
     );
 
     // SPI Flash
