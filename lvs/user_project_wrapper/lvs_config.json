@@ -1,6 +1,11 @@
 {
     "TOP_SOURCE": "user_project_wrapper",
     "TOP_LAYOUT": "$TOP_SOURCE",
+    "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
+	"INCLUDE_CONFIGS": [
+		"$LVS_ROOT/tech/$PDK/lvs_config.base.json",
+		"$UPRJ_ROOT/lvs/$TOP_SOURCE/lvs_config.sram512x8m8wm1.json"
+	],
     "EXTRACT_FLATGLOB": [
         ""
     ],
@@ -22,7 +27,22 @@
         "$PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice"
     ],
     "LVS_VERILOG_FILES": [
-        "$UPRJ_ROOT/verilog/gl/user_proj_example.v",
+        "$UPRJ_ROOT/verilog/gl/trng_1x3.v",
+        "$UPRJ_ROOT/verilog/gl/trng_1x5.v",
+        "$UPRJ_ROOT/verilog/gl/trng_1x7.v",
+        "$UPRJ_ROOT/verilog/gl/trng_2x3.v",
+        "$UPRJ_ROOT/verilog/gl/trng_2x5.v",
+        "$UPRJ_ROOT/verilog/gl/trng_2x7.v",
+        "$UPRJ_ROOT/verilog/gl/trng_8x3.v",
+        "$UPRJ_ROOT/verilog/gl/trng_8x5.v",
+        "$UPRJ_ROOT/verilog/gl/trng_8x7.v",
+        "$UPRJ_ROOT/verilog/gl/trng_32x3.v",
+        "$UPRJ_ROOT/verilog/gl/trng_32x5.v",
+        "$UPRJ_ROOT/verilog/gl/trng_32x7.v",
+        "$UPRJ_ROOT/verilog/gl/trng_128x3.v",
+        "$UPRJ_ROOT/verilog/gl/trng_128x5.v",
+        "$UPRJ_ROOT/verilog/gl/trng_128x7.v",
+        "$UPRJ_ROOT/verilog/gl/gf180_ram_512x8_wrapper.v",
         "$UPRJ_ROOT/verilog/gl/$TOP_SOURCE.v"
     ],
     "LAYOUT_FILE": "$UPRJ_ROOT/gds/$TOP_LAYOUT.gds"
