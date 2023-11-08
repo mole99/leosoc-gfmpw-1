@@ -1,9 +1,9 @@
 {
 	"PDK": "gf180mcuD",
 	"STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
-	"DESIGN_NAME": "trng_128x7",
+	"DESIGN_NAME": "trng_32x5",
 	"VERILOG_FILES": [
-		"dir::../../verilog/rtl/trng_configs/trng_128x7.sv",
+		"dir::../../verilog/rtl/trng_configs/trng_32x5.sv",
 		"dir::../../verilog/rtl/trng.sv",
         "dir::../../verilog/rtl/balanced_xor_tree.v",
         "dir::../../verilog/rtl/ring_oscillator.v"
@@ -12,7 +12,7 @@
 	"CLOCK_PORT": "clk",
 	"CLOCK_PERIOD": "24.0",
 	"FP_SIZING": "absolute",
-	"DIE_AREA": "0 0 250 250",
+	"DIE_AREA": "0 0 135 135",
 	"FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
 	"PL_BASIC_PLACEMENT": 0,
 	"PL_TARGET_DENSITY": 0.45,
