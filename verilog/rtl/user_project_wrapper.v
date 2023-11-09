@@ -71,7 +71,7 @@ module user_project_wrapper #(
 assign wbs_ack_o = 1'b1;
 assign wbs_dat_o = 32'b0;
 
-assign la_data_out = 64'b0;
+assign la_data_out = la_data_in; // loopback
 
 assign user_irq = 3'b0;
 

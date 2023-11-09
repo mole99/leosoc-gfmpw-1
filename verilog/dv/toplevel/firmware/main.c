@@ -115,7 +115,7 @@ void main()
         tx_uart(uart0, '\n');
         write_int(uart0, trng0->output);
         tx_uart(uart0, '\n');
-        trng0->enable = 0xFFFFFFFF;
+        //trng0->enable = 0xFFFFFFFF;
         write_int(uart0, trng0->output);
         tx_uart(uart0, '\n');
         write(uart0, "Core 0\n");
